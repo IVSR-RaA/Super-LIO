@@ -10,8 +10,8 @@ lio:
 
   # ROS Topic input
   ros:
-    lidar_topic: "/velodyne_points"
-    imu_topic: "/handsfree/imu"
+    lidar_topic: "/mid/points"
+    imu_topic: "/imu/data"
 
   # Sensor Configuration
   sensor:
