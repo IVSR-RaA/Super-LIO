@@ -210,6 +210,8 @@ ROSWrapper::ROSWrapper(){
   pub_odom_      = nh_.advertise<nav_msgs::Odometry>("/lio/odom", 100);  /// imu frame -> lidar freq
   pub_path_      = nh_.advertise<nav_msgs::Path>("/lio/path", 1);
   pub_path_robot_ = nh_.advertise<sensor_msgs::PointCloud2>("/lio/path_robot", 1);
+  pub_cloud_body_ = nh_.advertise<sensor_msgs::PointCloud2>("/lio/cloud_body", 10);
+  pub_cloud_world_ = nh_.advertise<sensor_msgs::PointCloud2>("/lio/cloud_world", 10);
   
   msg_path_point_.header.frame_id = "world";
   msg2uav_.header.frame_id = "world";
@@ -543,8 +545,6 @@ void ROSWrapper::pub_odom(const NavState& state){
 
 
 void ROSWrapper::pub_cloud_body(const CloudPtr& pc,double time){
-  static ros::Publisher pub_cloud_body_ = nh_.advertise<sensor_msgs::PointCloud2>
-                                            ("/lio/cloud_body", 10);
   sensor_msgs::PointCloud2 cloud;
   pcl::toROSMsg(*pc, cloud);
   cloud.header.frame_id = "body";
@@ -554,8 +554,6 @@ void ROSWrapper::pub_cloud_body(const CloudPtr& pc,double time){
 
 
 void ROSWrapper::pub_cloud_world(const CloudPtr& pc,double time){
-  static ros::Publisher pub_cloud_world_ = nh_.advertise<sensor_msgs::PointCloud2>
-                                            ("/lio/cloud_world", 10);
   sensor_msgs::PointCloud2 cloud;
   pcl::toROSMsg(*pc, cloud);
   cloud.header.frame_id = "world";

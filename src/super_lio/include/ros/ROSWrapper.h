@@ -114,6 +114,8 @@ private:
   ros::Publisher pub_odom_;        // imu frame -> lidar frequency
   ros::Publisher pub_path_;        // robo path
   ros::Publisher pub_path_robot_;
+  ros::Publisher pub_cloud_body_;
+  ros::Publisher pub_cloud_world_;
 
   nav_msgs::Path path_;
   sensor_msgs::PointCloud2 msg_path_point_;
