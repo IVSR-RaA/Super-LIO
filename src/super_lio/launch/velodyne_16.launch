@@ -1,11 +1,11 @@
 <launch>
-  <!-- VELO32 -->
+
   <arg name="rviz" default="true" />
 
-  <rosparam file="$(find super_lio)/config/M2DGR.yaml" command="load"/>
+  <rosparam file="$(find super_lio)/config/velodyne_16.yaml" command="load"/>
 
   <!-- Launch Nodes -->
-  <node pkg="super_lio" type="super_lio_node" name="lio_node" output="screen"/>
+  <node pkg="super_lio" type="super_lio_node" name="super_lio_node" output="screen"/>
 
   <!-- Optional RViz -->
   <group if="$(arg rviz)">

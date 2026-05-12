@@ -1,0 +1,68 @@
+lio:
+  # Map settings
+  map:
+    save_map: false
+    if_filter: false
+    save_map_dir: "map"
+    map_name: "map.pcd"
+    ds_size: 0.3
+    save_interval: 500
+
+  # ROS Topic input
+  ros:
+    lidar_topic: "/velodyne_points"
+    imu_topic: "/mavros/imu/data"
+
+  # Sensor Configuration
+  sensor:
+    lidar_type: 3              # Velodyne-like.
+    blind: 0.5                 # SDF lidar min range = 0.2, nhưng lọc gần 0.5 ổn định hơn
+    maxrange: 100.0             # Khớp <range><max>30</max> trong SDF
+    filter_rate: 1.0           # Velo16 thưa, không nên lọc quá mạnh
+    enable_downsample: true
+    voxel_fliter_size: 0.5    # Velo16 + range 30m, dùng 0.2~0.3 hợp lý
+    gravity_norm: 9.80665
+
+    imu_type: 1
+    imu_na: 0.1
+    imu_ng: 0.1
+    imu_nba: 0.0001
+    imu_nbg: 0.0001
+
+  extrinsic:
+    # Tạm để identity nếu lidar frame gần trùng với IMU/body frame.
+    # Nếu lidar_imu trong code là [tx ty tz R], thì tx ty tz phải là pose lidar so với imu.
+    lidar_imu: [0.0, 0.0, 0.0,
+                1.0, 0.0, 0.0,
+                0.0, 1.0, 0.0,
+                0.0, 0.0, 1.0]
+
+    # Transform from odom to robot frame.
+    # The odom frame is directly attached to the IMU frame.
+    # NOTE: The inverse of this transform is applied in the code.
+    odom_robo: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  # Vox hash Map
+  hash_map:
+    hash_capacity: 100000000
+    vox_resolution: 0.5       
+
+  # Kalman Filter Parameters
+  kf:
+    kf_type: 0
+    kf_max_iterations: 4
+    kf_align_gravity: true
+    kf_quit_eps: 0.001
+
+  # output
+  output:
+    robot: true                # Bật nếu cần pose cho MAVROS/PX4 hoặc node khác
+    plan_env_world: false
+    plan_env_body: false
+    planner: false
+    map: true
+    dense: true
+    pub_step: 10                # 15Hz lidar, pub_step 5 giúp RViz mượt hơn 10
+
+  eva:
+    timer: true

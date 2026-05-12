@@ -542,6 +542,17 @@ void ROSWrapper::pub_odom(const NavState& state){
 
 
 
+void ROSWrapper::pub_cloud_body(const CloudPtr& pc,double time){
+  static ros::Publisher pub_cloud_body_ = nh_.advertise<sensor_msgs::PointCloud2>
+                                            ("/lio/cloud_body", 10);
+  sensor_msgs::PointCloud2 cloud;
+  pcl::toROSMsg(*pc, cloud);
+  cloud.header.frame_id = "body";
+  cloud.header.stamp = ros::Time().fromSec(time);
+  pub_cloud_body_.publish(cloud);
+}
+
+
 void ROSWrapper::pub_cloud_world(const CloudPtr& pc,double time){
   static ros::Publisher pub_cloud_world_ = nh_.advertise<sensor_msgs::PointCloud2>
                                             ("/lio/cloud_world", 10);

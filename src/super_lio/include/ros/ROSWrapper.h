@@ -75,6 +75,7 @@ public:
   }
 
   void pub_odom(const NavState&);
+  void pub_cloud_body(const BASIC::CloudPtr& pc, double time);
   void pub_cloud_world(const BASIC::CloudPtr& pc, double time);
   void pub_cloud2planner(const BASIC::CloudPtr& pc, double time);
   void pub_cloud_body_pose(const BASIC::CloudPtr& pc, 

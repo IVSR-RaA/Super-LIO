@@ -319,9 +319,11 @@ void SuperLIOReLoc::Output() {
     }
     count = 0;
     if(g_visual_dense){
+      data_wrapper_->pub_cloud_body(scan_undistort_full_, state.timestamp);
       pcl::transformPointCloud(*scan_undistort_full_, *world_pc, transformation);
       data_wrapper_->pub_cloud_world(world_pc, state.timestamp);
     }else{
+      data_wrapper_->pub_cloud_body(ds_undistort_, state.timestamp);
       pcl::transformPointCloud(*ds_undistort_, *world_pc, transformation);
       data_wrapper_->pub_cloud_world(world_pc, state.timestamp);
     }

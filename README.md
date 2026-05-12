@@ -65,7 +65,8 @@ cd Super-LIO
 catkin_make
 
 source devel/setup.bash 
-roslaunch super_lio Livox_mid360.launch
+roslaunch super_lio M2DGR.launch
+
 
 ```
 
