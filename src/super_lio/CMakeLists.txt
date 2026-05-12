@@ -51,7 +51,7 @@ include_directories(
 
 # Package setup for catkin
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy std_msgs message_runtime
+  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy sensor_msgs std_msgs message_runtime
   DEPENDS EIGEN3 PCL
   INCLUDE_DIRS include
 )
