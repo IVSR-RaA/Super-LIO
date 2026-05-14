@@ -1,8 +1,12 @@
 <launch>
 
   <arg name="rviz" default="true" />
+  <arg name="lidar_topic" default="/velodyne_points" />
+  <arg name="imu_topic" default="/mavros/imu/data_raw" />
 
   <rosparam file="$(find super_lio)/config/velodyne_16.yaml" command="load"/>
+  <param name="lio/ros/lidar_topic" value="$(arg lidar_topic)" />
+  <param name="lio/ros/imu_topic" value="$(arg imu_topic)" />
 
   <!-- Launch Nodes -->
   <node pkg="super_lio" type="super_lio_node" name="super_lio_node" output="screen"/>
