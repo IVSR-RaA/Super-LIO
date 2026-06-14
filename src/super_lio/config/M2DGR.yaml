@@ -8,7 +8,7 @@ lio:
     ds_size: 0.3
     save_interval: 500
 
-  # ROS Topic input
+  # ROS Topic input (for UGV)
   ros:
     lidar_topic: "/mid/points"
     imu_topic: "/imu/data"

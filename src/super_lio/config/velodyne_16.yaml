@@ -8,7 +8,7 @@ lio:
     ds_size: 0.3
     save_interval: 500
 
-  # ROS Topic input
+  # ROS Topic input (for UAV)
   ros:
     lidar_topic: "/velodyne_points"
     imu_topic: "/mavros/imu/data"
